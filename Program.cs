@@ -1,4 +1,9 @@
-﻿class Program
+﻿using System;
+using System.Collections.Generic;
+
+namespace AddressBookProject
+{
+class Program
 {
     /*
         1. Add the required classes to make the following code compile.
@@ -13,22 +18,19 @@
     static void Main(string[] args)
     {
         // Create a few contacts
-        Contact bob = new Contact()
-        {
+        Contact bob = new Contact() {
             FirstName = "Bob",
             LastName = "Smith",
             Email = "bob.smith@email.com",
             Address = "100 Some Ln, Testville, TN 11111"
         };
-        Contact sue = new Contact()
-        {
+        Contact sue = new Contact() {
             FirstName = "Sue",
             LastName = "Jones",
             Email = "sue.jones@email.com",
             Address = "322 Hard Way, Testville, TN 11111"
         };
-        Contact juan = new Contact()
-        {
+        Contact juan = new Contact() {
             FirstName = "Juan",
             LastName = "Lopez",
             Email = "juan.lopez@email.com",
@@ -37,6 +39,11 @@
 
 
         // Create an AddressBook and add some contacts to it
+
+        public class AddressBook
+        {
+            Dictionary<string> addressBook = new Dictionary<string>()
+        }
         AddressBook addressBook = new AddressBook();
         addressBook.AddContact(bob);
         addressBook.AddContact(sue);
@@ -67,4 +74,5 @@
             Console.WriteLine($"Address: {contact.Address}");
         }
     }
+}
 }
