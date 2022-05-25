@@ -40,16 +40,12 @@ class Program
 
         // Create an AddressBook and add some contacts to it
 
-        public class AddressBook
-        {
-            Dictionary<string> addressBook = new Dictionary<string>()
-        }
         AddressBook addressBook = new AddressBook();
         addressBook.AddContact(bob);
         addressBook.AddContact(sue);
         addressBook.AddContact(juan);
 
-        // Try to addd a contact a second time
+        // Try to add a contact a second time
         addressBook.AddContact(sue);
 
 
