@@ -13,5 +13,10 @@ namespace AddressBookProject
         {
             AddressBookDictionary.Add(name.Email, name);
         }
+
+        public void GetByEmail(Contact email)
+        {
+            // AddressBookDictionary.Find(email);
+        }
     }
 }
