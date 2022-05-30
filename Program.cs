@@ -1,19 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AddressBook
+namespace AddressBookProject
 {
 class Program
     {
-        /*
-            1. Add the required classes to make the following code compile.
-            HINT: Use a Dictionary in the AddressBook class to store Contacts. The key should be the contact's email address.
+        // /*
+        //     1. Add the required classes to make the following code compile.
+        //     HINT: Use a Dictionary in the AddressBook class to store Contacts. The key should be the contact's email address.
+        // */
 
-            2. Run the program and observe the exception.
+        public class Contact
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string FullName { get { return $"{FirstName} {LastName}"; } }
+            public string Email { get; set; }
+            public string Address { get; set; }
+        }
 
-            3. Add try/catch blocks in the appropriate locations to prevent the program from crashing
-                Print meaningful error messages in the catch blocks.
-        */
+        public class AddressBook
+        {
+            // dictionary:
+            public Dictionary<string, Contact> ContactList = new Dictionary<string, Contact>();
+
+            public void AddContact(Contact individualContact)
+            {
+                try
+                {
+                    ContactList.Add($"{individualContact.Email}", individualContact);
+                }
+                catch(ArgumentException)
+                {
+                    Console.WriteLine("Hmmm... Something went wrong.");
+                    return;
+                }
+            }
+
+            public Contact GetByEmail(string email)
+            {
+                try
+                {
+                    return ContactList[email];
+                }
+                catch (KeyNotFoundException)
+                {
+                    Console.WriteLine("Hmmm... Something went wrong.");
+                    return null;
+                }
+            }
+        }
+
+
+
+        // /*
+        //     2. Run the program and observe the exception.
+        // */
+        // /*
+        //     3. Add try/catch blocks in the appropriate locations to prevent the program from crashing
+        //         Print meaningful error messages in the catch blocks.
+        // */
 
         static void Main(string[] args)
         {
@@ -40,7 +86,6 @@ class Program
                 Address = "888 Easy St, Testville, TN 11111"
             };
 
-
             // Create an AddressBook and add some contacts to it
             AddressBook addressBook = new AddressBook();
             addressBook.AddContact(bob);
@@ -65,11 +110,20 @@ class Program
             //  Search the AddressBook by email and print the information about each Contact
             foreach (string email in emails)
             {
-                Contact contact = addressBook.GetByEmail(email);
-                Console.WriteLine("----------------------------");
-                Console.WriteLine($"Name: {contact.FullName}");
-                Console.WriteLine($"Email: {contact.Email}");
-                Console.WriteLine($"Address: {contact.Address}");
+                try
+                {
+                    Contact contact = addressBook.GetByEmail(email);
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine($"Name: {contact.FullName}");
+                    Console.WriteLine($"Email: {contact.Email}");
+                    Console.WriteLine($"Address: {contact.Address}");
+                }
+                catch(NullReferenceException)
+                {
+                    Console.WriteLine("Hmmm... Something went wrong.");
+                    return;
+                }
+                
             }
         }
     }
